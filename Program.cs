@@ -9,27 +9,52 @@ namespace Deck_of_Cards
         {
             Deck TheDeck = new Deck();
             Player Zach = new Player("Zach");
+            Player Bill = new Player("Bill");
+            Player Tom = new Player("Tom");
+            Player Dave = new Player("Dave");
+            Player Chris = new Player("Chris");
+            Player Izac = new Player("Izac");
+            Player Collin = new Player("Collin");
             TheDeck.Shuffle();
             TheDeck.Deal();
-
             Zach.Draw(TheDeck);
-            Zach.Discard();
-            Zach.Draw(TheDeck);
+            Bill.Draw(TheDeck);
+            Tom.Draw(TheDeck);
+            Dave.Draw(TheDeck);
+            Chris.Draw(TheDeck);
+            Izac.Draw(TheDeck);
+            Collin.Draw(TheDeck);
+            // Zach.Discard();
+            // Bill.Discard();
+            // Tom.Discard();
+            // Dave.Discard();
+            // Chris.Discard();
+            // Izac.Discard();
+            // Collin.Discard();
             Zach.ShowPlyrHand();
-            TheDeck.Reset();
-            Zach.Discard();
-            Zach.Draw(TheDeck);
-            Zach.ShowPlyrHand();
-            TheDeck.Reset();
-            Zach.ShowPlyrHand();
+            // Bill.ShowPlyrHand();
+            // Tom.ShowPlyrHand();
+            // Chris.ShowPlyrHand();
+            // Dave.ShowPlyrHand();
+            // Izac.ShowPlyrHand();
+            // Collin.ShowPlyrHand();
         }
     }
 
+
+    /*______________________________Step 1 CLASS CALLED CARD____________________________________________ */
+    /* Give the Card class a property "stringVal" which will hold the value of the card ex. (Ace, 2, 3, 4, 5, 6, 7, 8, 9, 10, Jack, Queen, King). 
+    This "val" should be a string.
+    Give the Card a property "suit" which will hold the suit of the card (Clubs, Spades, Hearts, Diamonds).
+    Give the Card a property "val" which will hold the numerical value of the card 1-13 as integers. */
+
     public class Card
     {
-        public string stringVal;
-        public string suit;
-        public int val;
+        //Class Properties
+
+        public string stringVal; //card property, value of a card in list so its string type.
+        public string suit;  //suit value that is a parent to the card properties. cards are chlideren of suits. there are 4 suits.
+        public int val; // in order to have a list of 52 cards we use num vals for the cards 1-13,  13 cards each suit, 4suits,  4x13=52.
 
         public Card(string stringValInput, string suitInput, int valInput)
         {
@@ -38,6 +63,13 @@ namespace Deck_of_Cards
             val = valInput;
         }
     }
+
+    /*______________________________Step 2 CLASS CALLED DECK____________________________________________ */
+    /* Give the Deck class a property called "cards" which is a list of Card objects.
+When initializing the deck, make sure that it has a list of 52 unique cards as its "cards" property.
+Give the Deck a deal method that selects the "top-most" card, removes it from the list of cards, and returns the Card.
+Give the Deck a reset method that resets the cards property to contain the original 52 cards.
+Give the Deck a shuffle method that randomly reorders the deck's cards. */
 
     public class Deck
     {
@@ -72,14 +104,14 @@ namespace Deck_of_Cards
                     cards.Add(new Card(stringVal[j], suit[i], val[j]));
                 }
             }
-            System.Console.WriteLine("READY TO DEAL, DECK IS READY");
+            System.Console.WriteLine("Cards Ready, Dealing Now...");
         }
 
         public void Reset()
         {
             cards.Clear();
             DeckReady();
-            System.Console.WriteLine("THE DECK IS RESET");
+            System.Console.WriteLine("Cards In TheDeck Are Reset");
         }
 
         public void Shuffle()
@@ -97,6 +129,16 @@ namespace Deck_of_Cards
         }
 
     }
+
+
+    /*______________________________Step 3 CLASS CALLED Player____________________________________________ */
+    /* Give the Player class a name property. {DONE}
+    Give the Player a hand property that is a List of type Card. {DONE}{PlyrHand}
+    Give the Player a draw method of which draws a card from a deck, adds it to the player's hand and returns the Card.
+    Note this method will require reference to a deck object
+    Give the Player a discard method which discards the Card at the specified index from the player's hand
+    and returns this Card or null if the index does not exist. */
+
 
     public class Player
     {
@@ -118,10 +160,21 @@ namespace Deck_of_Cards
 
         public void ShowPlyrHand()
         {
-            for (int i = 0; i < PlyrHand.Count; i++)
+            if (this.PlyrHand != null)
             {
-                Console.WriteLine(PlyrHand[i].val + " of " + PlyrHand[i].suit);
+                for (int i = 0; i < this.PlyrHand.Count; i++)
+
+                {
+                    Console.WriteLine(" showing my hand " + this.PlyrHand[i].stringVal + " of " + this.PlyrHand[i].suit);
+                }
+
             }
+            else
+            {
+                Console.WriteLine("No more cards in The Deck");
+            }
+
+
         }
 
         public Card Discard()
