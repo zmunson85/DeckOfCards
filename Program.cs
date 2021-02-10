@@ -160,7 +160,7 @@ Give the Deck a shuffle method that randomly reorders the deck's cards. */
 
         public void ShowPlyrHand()
         {
-            if (this.PlyrHand != null)
+            if (this.PlyrHand != null)//condition  to check what player hand is
             {
                 for (int i = 0; i < this.PlyrHand.Count; i++)
 
